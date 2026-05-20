@@ -1,0 +1,7 @@
+survey-service:
+  description: "Survey service — public response submission"
+  auto_apply:
+    - origin: hosted
+  grants:
+    - api:
+        include: graphql

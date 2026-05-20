@@ -1,0 +1,25 @@
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<svy = 'https://www.jahia.org/survey-module/nt/1.0'>
+<svymix = 'https://www.jahia.org/survey-module/mix/1.0'>
+
+// Base mixin — groups all survey components in the content type picker
+[svymix:component] > jmix:droppableContent, jmix:accessControllableContent mixin
+
+// Ordered container for all responses to a single survey (UGC, written directly to LIVE)
+[svy:responseList] > jnt:content, jmix:hiddenType
+ orderable
+ + * (svy:surveyResponse)
+
+// Stores one participant's full response to a survey
+[svy:surveyResponse] > jnt:content, jmix:hiddenType
+ orderable
+ - email (string)
+ - submittedAt (date)
+ - completed (boolean)
+ + * (svy:questionResponse)
+
+// Stores one participant's answer(s) to a single question
+[svy:questionResponse] > jnt:content, jmix:hiddenType
+ - questionPath (string)
+ - chosenOptions (string) multiple

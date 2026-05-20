@@ -1,0 +1,27 @@
+.survey {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: system-ui, sans-serif;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  color: #1e1b4b;
+}
+
+.description {
+  margin-bottom: 1.5rem;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.notice {
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  background: #f0f9ff;
+  color: #0369a1;
+  font-size: 0.95rem;
+}

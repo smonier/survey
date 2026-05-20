@@ -1,0 +1,8 @@
+<svy = 'https://www.jahia.org/survey-module/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+
+[svy:question] > jnt:content, mix:title orderable
+ - text (string) i18n
+ - allowMultiple (boolean)
+ + * (svy:answerOption)

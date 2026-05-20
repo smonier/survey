@@ -1,0 +1,561 @@
+/* ============================================================
+   Survey Module — Design System
+   Fonts  : Playfair Display (questions) · Inter (body)
+   Palette: Warm white surface + Indigo accent
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ── Design tokens — always in :root ───────────────────────── */
+:root {
+  /* Accent */
+  --svy-accent:        #4F46E5;
+  --svy-accent-hover:  #4338CA;
+  --svy-accent-light:  #EEF2FF;
+  --svy-accent-dim:    rgba(79, 70, 229, 0.14);
+  --svy-accent-grad:   linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+
+  /* Surface */
+  --svy-bg:            #FFFFFF;
+  --svy-bg-subtle:     #F8FAFC;
+
+  /* Text */
+  --svy-text:          #1E293B;
+  --svy-text-muted:    #64748B;
+  --svy-text-light:    #94A3B8;
+
+  /* Borders */
+  --svy-border:        #E2E8F0;
+
+  /* Feedback */
+  --svy-success-bg:    #F0FDF4;
+  --svy-success-bdr:   #86EFAC;
+  --svy-success-text:  #166534;
+  --svy-warning-bg:    #FFFBEB;
+  --svy-warning-bdr:   #FCD34D;
+  --svy-warning-text:  #92400E;
+  --svy-error:         #DC2626;
+  --svy-error-dim:     rgba(220, 38, 38, 0.12);
+
+  /* Elevation — ONE level */
+  --svy-shadow:        0 1px 3px rgba(15, 23, 42, 0.06),
+                       0 16px 48px rgba(15, 23, 42, 0.09);
+
+  /* Shape */
+  --svy-radius:        20px;
+  --svy-radius-sm:     10px;
+  --svy-radius-xs:     6px;
+
+  /* Motion — off by default, on when user allows */
+  --svy-ease:          cubic-bezier(0.4, 0, 0.2, 1);
+  --svy-duration:      0ms;
+  --svy-duration-slow: 0ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --svy-duration:      200ms;
+    --svy-duration-slow: 350ms;
+  }
+}
+
+/* ── Base font ──────────────────────────────────────────────── */
+.survey-wizard,
+.survey-notice,
+.survey-results {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Wizard card ────────────────────────────────────────────── */
+.survey-wizard {
+  display: flex;
+  flex-direction: column;
+  background: var(--svy-bg, #fff);
+  border-radius: var(--svy-radius, 20px);
+  box-shadow: var(--svy-shadow, 0 4px 24px rgba(0,0,0,0.08));
+  overflow: hidden;
+  max-width: 620px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Progress bar ───────────────────────────────────────────── */
+.survey-wizard__progress {
+  height: 3px;
+  background: var(--svy-border, #E2E8F0);
+  flex-shrink: 0;
+}
+
+.survey-wizard__progress-fill {
+  height: 100%;
+  background: var(--svy-accent-grad, #4F46E5);
+  transition: width var(--svy-duration-slow, 0ms) var(--svy-ease, ease);
+  border-radius: 0 2px 2px 0;
+}
+
+/* ── Meta row (step counter + timer) ───────────────────────── */
+.survey-wizard__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px 0;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.survey-wizard__step-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--svy-accent, #4F46E5);
+}
+
+/* ── Animated body ──────────────────────────────────────────── */
+.survey-wizard__body {
+  padding: 36px 40px 28px;
+  min-height: 300px;
+}
+
+@keyframes svy-from-right {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes svy-from-left {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.survey-wizard__body--forward {
+  animation: svy-from-right var(--svy-duration-slow, 0ms) var(--svy-ease, ease) both;
+}
+.survey-wizard__body--back {
+  animation: svy-from-left var(--svy-duration-slow, 0ms) var(--svy-ease, ease) both;
+}
+
+/* ── Step content ───────────────────────────────────────────── */
+.survey-step__eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--svy-accent, #4F46E5);
+  margin: 0 0 14px;
+}
+
+.survey-step__question {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.5rem, 4vw, 1.875rem);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--svy-text, #1E293B);
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.survey-step__hint {
+  font-size: 0.9375rem;
+  color: var(--svy-text-muted, #64748B);
+  line-height: 1.65;
+  margin: 0 0 28px;
+}
+
+.survey-step__multi-hint {
+  font-size: 0.8125rem;
+  color: var(--svy-text-light, #94A3B8);
+  font-style: italic;
+  margin: -18px 0 20px;
+}
+
+/* ── Email input ────────────────────────────────────────────── */
+.survey-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.survey-field__input {
+  width: 100%;
+  padding: 15px 18px;
+  border: 1.5px solid var(--svy-border, #E2E8F0);
+  border-radius: var(--svy-radius-sm, 10px);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--svy-text, #1E293B);
+  background: var(--svy-bg, #fff);
+  transition:
+    border-color var(--svy-duration, 0ms) var(--svy-ease, ease),
+    box-shadow   var(--svy-duration, 0ms) var(--svy-ease, ease);
+  box-sizing: border-box;
+  outline: none;
+  appearance: none;
+}
+
+.survey-field__input::placeholder {
+  color: var(--svy-text-light, #94A3B8);
+}
+
+.survey-field__input:focus {
+  border-color: var(--svy-accent, #4F46E5);
+  box-shadow: 0 0 0 3px var(--svy-accent-dim, rgba(79,70,229,0.14));
+}
+
+.survey-field__input--error {
+  border-color: var(--svy-error, #DC2626);
+}
+.survey-field__input--error:focus {
+  box-shadow: 0 0 0 3px var(--svy-error-dim, rgba(220,38,38,0.12));
+}
+
+.survey-field__error {
+  font-size: 0.8125rem;
+  color: var(--svy-error, #DC2626);
+  margin: 0;
+}
+
+/* ── Option list ────────────────────────────────────────────── */
+.survey-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.survey-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  border: 1.5px solid var(--svy-border, #E2E8F0);
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    border-color var(--svy-duration, 0ms) var(--svy-ease, ease),
+    background   var(--svy-duration, 0ms) var(--svy-ease, ease),
+    box-shadow   var(--svy-duration, 0ms) var(--svy-ease, ease);
+  user-select: none;
+  position: relative;
+}
+
+.survey-option:hover {
+  border-color: var(--svy-accent, #4F46E5);
+  background: var(--svy-accent-light, #EEF2FF);
+}
+
+.survey-option--selected {
+  border-color: var(--svy-accent, #4F46E5);
+  background: var(--svy-accent-light, #EEF2FF);
+  box-shadow: 0 0 0 1px var(--svy-accent, #4F46E5);
+}
+
+/* Hidden native input — accessible but invisible */
+.survey-option__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* Custom indicator — radio (circle default) */
+.survey-option__indicator {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--svy-border, #E2E8F0);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition:
+    border-color var(--svy-duration, 0ms) var(--svy-ease, ease),
+    background   var(--svy-duration, 0ms) var(--svy-ease, ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.survey-option--selected .survey-option__indicator {
+  border-color: var(--svy-accent, #4F46E5);
+  background: var(--svy-accent, #4F46E5);
+}
+
+/* Radio inner dot */
+.survey-option--selected .survey-option__indicator::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* Checkbox variant */
+.survey-options--multi .survey-option__indicator {
+  border-radius: 5px;
+}
+
+.survey-options--multi .survey-option--selected .survey-option__indicator::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  background: transparent;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  border-radius: 0;
+  transform: rotate(-45deg) translateY(-1px);
+}
+
+/* Keyboard focus ring */
+.survey-option__input:focus-visible ~ .survey-option__indicator {
+  box-shadow: 0 0 0 3px var(--svy-accent-dim, rgba(79,70,229,0.14));
+}
+
+.survey-option__body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+  min-width: 0;
+}
+
+.survey-option__text {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--svy-text, #1E293B);
+  line-height: 1.4;
+  transition: color var(--svy-duration, 0ms) var(--svy-ease, ease);
+}
+
+.survey-option--selected .survey-option__text {
+  color: var(--svy-accent-hover, #4338CA);
+}
+
+.survey-option__description {
+  font-size: 0.8125rem;
+  color: var(--svy-text-muted, #64748B);
+  line-height: 1.5;
+}
+
+/* ── Navigation footer ──────────────────────────────────────── */
+.survey-wizard__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px 36px;
+  gap: 12px;
+}
+
+.survey-wizard__nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.survey-wizard__error {
+  font-size: 0.8125rem;
+  color: var(--svy-error, #DC2626);
+  margin: 0;
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.survey-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 22px;
+  border-radius: var(--svy-radius-sm, 10px);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  outline: none;
+  transition:
+    background     var(--svy-duration, 0ms) var(--svy-ease, ease),
+    color          var(--svy-duration, 0ms) var(--svy-ease, ease),
+    border-color   var(--svy-duration, 0ms) var(--svy-ease, ease),
+    box-shadow     var(--svy-duration, 0ms) var(--svy-ease, ease),
+    opacity        var(--svy-duration, 0ms) var(--svy-ease, ease);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.survey-btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--svy-accent-dim, rgba(79,70,229,0.14));
+}
+
+/* Ghost / back */
+.survey-btn--ghost {
+  background: transparent;
+  color: var(--svy-text-muted, #64748B);
+  border-color: var(--svy-border, #E2E8F0);
+}
+
+.survey-btn--ghost:hover:not(:disabled) {
+  background: var(--svy-bg-subtle, #F8FAFC);
+  color: var(--svy-text, #1E293B);
+  border-color: #CBD5E1;
+}
+
+.survey-btn--ghost:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Primary / next-submit */
+.survey-btn--primary {
+  background: var(--svy-accent, #4F46E5);
+  color: #fff;
+  border-color: var(--svy-accent, #4F46E5);
+  min-width: 128px;
+  justify-content: center;
+}
+
+.survey-btn--primary:hover:not(:disabled) {
+  background: var(--svy-accent-hover, #4338CA);
+  border-color: var(--svy-accent-hover, #4338CA);
+}
+
+.survey-btn--primary:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.survey-btn--primary:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+/* ── Timer badge ────────────────────────────────────────────── */
+.survey-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  background: #FEF9C3;
+  border: 1px solid #FDE047;
+  border-radius: var(--svy-radius-xs, 6px);
+  font-size: 0.8125rem;
+}
+
+.survey-timer__label {
+  color: #713F12;
+  font-weight: 500;
+}
+
+.survey-timer__value {
+  font-weight: 700;
+  color: #92400E;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Terminal notice cards ──────────────────────────────────── */
+.survey-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 56px 40px;
+  border-radius: var(--svy-radius, 20px);
+  border: 1.5px solid;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.survey-notice--success {
+  background: var(--svy-success-bg, #F0FDF4);
+  border-color: var(--svy-success-bdr, #86EFAC);
+  color: var(--svy-success-text, #166534);
+}
+
+.survey-notice--warning {
+  background: var(--svy-warning-bg, #FFFBEB);
+  border-color: var(--svy-warning-bdr, #FCD34D);
+  color: var(--svy-warning-text, #92400E);
+}
+
+/* Checkmark circle */
+.survey-notice__check {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--svy-success-bdr, #86EFAC);
+  margin-bottom: 20px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.survey-notice__check::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 22px;
+  height: 13px;
+  border-left: 3px solid var(--svy-success-text, #166534);
+  border-bottom: 3px solid var(--svy-success-text, #166534);
+  border-radius: 1px;
+  transform: rotate(-45deg) translate(2px, -2px);
+}
+
+.survey-notice__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 8px;
+}
+
+.survey-notice__hint {
+  font-size: 0.875rem;
+  opacity: 0.75;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ── Results chart wrapper ──────────────────────────────────── */
+.survey-results {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.survey-results__title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--svy-text, #1E293B);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.survey-results__total {
+  font-size: 0.875rem;
+  color: var(--svy-text-muted, #64748B);
+  margin: -16px 0 0;
+}
+
+.survey-results__question {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 26px;
+  border: 1.5px solid var(--svy-border, #E2E8F0);
+  border-radius: 14px;
+}
+
+.survey-results__question-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--svy-text, #1E293B);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .survey-wizard__meta   { padding: 18px 24px 0; }
+  .survey-wizard__body   { padding: 28px 24px 20px; min-height: 260px; }
+  .survey-wizard__nav    { padding: 0 24px 28px; }
+  .survey-step__question { font-size: 1.375rem; }
+  .survey-option         { padding: 13px 15px; }
+  .survey-btn            { padding: 11px 18px; font-size: 0.875rem; }
+  .survey-notice         { padding: 40px 24px; }
+}

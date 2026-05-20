@@ -1,0 +1,13 @@
+<svy = 'https://www.jahia.org/survey-module/nt/1.0'>
+<svymix = 'https://www.jahia.org/survey-module/mix/1.0'>
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+
+[svy:survey] > jnt:content, svymix:component, mix:title orderable
+ - description (string, richtext) i18n
+ - active (boolean) = true autocreated
+ - timerEnabled (boolean)
+ - startDate (date)
+ - endDate (date)
+ + * (svy:question)
+ + responses (svy:responseList) hidden
