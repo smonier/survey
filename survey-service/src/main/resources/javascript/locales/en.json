@@ -1,0 +1,108 @@
+{
+  "survey-service": {
+    "label": "Survey Analytics",
+    "refresh": "Refresh data",
+    "menu": {
+      "overview": "Overview",
+      "results": "Results",
+      "respondents": "Respondents",
+      "aiAnalysis": "AI Analysis"
+    },
+    "picker": {
+      "placeholder": "Select a survey…",
+      "noSurveys": "No surveys found on this site"
+    },
+    "overview": {
+      "totalSurveys": "Surveys",
+      "totalResponses": "Total Responses",
+      "completionRate": "Completion Rate",
+      "active": "Active",
+      "inactive": "Inactive",
+      "responses": "responses",
+      "lastResponse": "Last response",
+      "viewResults": "Results",
+      "viewRespondents": "Respondents",
+      "noResponses": "No responses yet",
+      "timed": {
+        "live": "Live now",
+        "upcoming": "Upcoming",
+        "expired": "Expired"
+      }
+    },
+    "results": {
+      "multipleChoice": "Multiple choice",
+      "noData": "No responses yet for this survey",
+      "votes": "votes",
+      "selectSurvey": "Select a survey above to view charts"
+    },
+    "aiAnalysis": {
+      "emptyTitle": "AI-Powered Sales Analysis",
+      "emptyDesc": "Select a survey above, then trigger the AI analysis to get an actionable sales intelligence report powered by DeepSeek.",
+      "triggerTitle": "Ready to Analyze",
+      "triggerDesc": "DeepSeek will analyze the survey responses and generate a structured sales report covering key findings, audience segments, opportunities, risks, and recommended next actions.",
+      "runBtn": "Run AI Analysis",
+      "reanalyze": "Re-analyze",
+      "retry": "Try Again",
+      "analyzing": "Analyzing your survey…",
+      "patience": "This may take up to 60 seconds",
+      "noData": "No responses yet — collect some survey data before running the analysis.",
+      "findingsCount": "findings",
+      "segmentsCount": "segments",
+      "approach": "Sales approach",
+      "mitigation": "Mitigation",
+      "keyPoints": "Key talking points",
+      "objectionHandlers": "Objection handlers",
+      "steps": {
+        "loadingData": "Loading survey structure…",
+        "loadingResponses": "Fetching response data…",
+        "callingAI": "Generating AI report (DeepSeek)…"
+      },
+      "sections": {
+        "executiveSummary": "Executive Summary",
+        "keyFindings": "Key Findings",
+        "audienceSegments": "Audience Segments",
+        "opportunities": "Opportunities",
+        "riskFlags": "Risk Flags",
+        "talkingPoints": "Sales Talking Points",
+        "nextActions": "Recommended Next Actions"
+      },
+      "significance": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "priority": {
+        "high": "High priority",
+        "medium": "Medium priority",
+        "low": "Low priority"
+      },
+      "timeline": {
+        "immediate": "Immediate",
+        "this_week": "This week",
+        "this_month": "This month"
+      },
+      "reportTitle": "Sales Intelligence Report",
+      "storedAt": "Generated on",
+      "downloadPdf": "Download PDF",
+      "rerun": "Re-run Analysis",
+      "saving": "Saving…",
+      "checking": "Loading saved analysis…"
+    },
+    "respondents": {
+      "search": "Search by email…",
+      "exportCsv": "Export CSV",
+      "exportJson": "Export JSON",
+      "email": "Email",
+      "date": "Submitted",
+      "status": "Status",
+      "answers": "Answers",
+      "complete": "Complete",
+      "noResults": "No respondents match your search",
+      "selectSurvey": "Select a survey above to view respondents",
+      "detail": {
+        "title": "Response detail",
+        "noAnswer": "No answer recorded"
+      }
+    }
+  }
+}

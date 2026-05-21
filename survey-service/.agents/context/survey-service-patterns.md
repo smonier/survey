@@ -363,3 +363,56 @@ const questions = rawQuestions.map((q) => ({ id: q.uuid, ... }));
 ```
 
 **Rule**: Use `uuid` (not `path`) as the key any time you need to match JCR nodes across different rendering or storage contexts. This applies to question IDs stored in survey responses, content references, and any cross-context identity check.
+
+---
+
+## Apollo Client cache key rule — always include `uuid` and `workspace`
+
+### The problem
+
+Apollo Client normalises the cache using a composite key per type. For Jahia's `GenericJCRNode` the key is `uuid + workspace`. If **either field is absent** from a selection set, Apollo cannot build the key and logs:
+
+```
+Missing fields uuid,workspace while extracting key from GenericJCRNode
+```
+
+This also disables cross-query deduplication and forces per-query re-fetching, hurting performance.
+
+### The rule
+
+Every `GenericJCRNode` selection — whether it is a top-level `nodeByPath`, a `children.nodes` list, or an aliased descendant — **must include `uuid` and `workspace`**.
+
+```graphql
+# ❌ WRONG — triggers "Missing fields" warning, breaks caching
+jcr(workspace: LIVE) {
+    nodeByPath(path: $surveyPath) {
+        aiAnalysis: descendant(relPath: "aiAnalysis") {
+            analysisJson: property(name: "svy:analysisJson") { value }
+        }
+    }
+}
+
+# ✅ CORRECT — every node level includes uuid + workspace
+jcr(workspace: LIVE) {
+    nodeByPath(path: $surveyPath) {
+        uuid
+        workspace
+        aiAnalysis: descendant(relPath: "aiAnalysis") {
+            uuid
+            workspace
+            analysisJson: property(name: "svy:analysisJson") { value }
+        }
+    }
+}
+```
+
+### Checklist when writing a new query
+
+- [ ] `nodeByPath(...)` → add `uuid workspace`
+- [ ] `nodesByQuery(...).nodes` → add `uuid workspace`
+- [ ] `nodesByCriteria(...).nodes` → add `uuid workspace`
+- [ ] `children(...).nodes` → add `uuid workspace`
+- [ ] `descendant(relPath: "...")` result → add `uuid workspace`
+- [ ] `nodeInWorkspace(...)` result → add `uuid workspace`
+
+Property nodes (`property(name: ...) { value }`) are **not** `GenericJCRNode` and do **not** need `uuid`/`workspace`.

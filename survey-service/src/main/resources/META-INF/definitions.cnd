@@ -1,0 +1,13 @@
+<jnt = 'http://www.jahia.org/jahia/nt/1.0'>
+<jmix = 'http://www.jahia.org/jahia/mix/1.0'>
+<svy = 'https://www.jahia.org/survey-module/nt/1.0'>
+
+/**
+ * Stores a single AI-generated analysis report for a survey.
+ * Created as a child node named "aiAnalysis" under the svy:survey node.
+ * Lives in the EDIT workspace (back-office analytics data, not public content).
+ */
+[svy:surveyAnalysis] > jnt:content, jmix:hiddenType
+ - svy:analysisJson (string)      // Full JSON returned by DeepSeek
+ - svy:surveyTitle (string)       // Survey title at time of analysis
+ - svy:generatedAt (string)       // ISO-8601 timestamp

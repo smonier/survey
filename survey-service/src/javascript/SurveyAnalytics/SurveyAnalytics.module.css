@@ -1,0 +1,76 @@
+/* ── Root shell ─────────────────────────────────────────────────────────── */
+.root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f0f2f7;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* ── Tab bar ────────────────────────────────────────────────────────────── */
+.tabBar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-accent20);
+    padding: 0 24px;
+}
+
+.tab {
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #7b8ab8;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.tab:hover {
+    color: var(--color-accent);
+}
+
+.tabActive {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+}
+
+/* ── Survey picker bar (between header and tab bar) ────────────────────── */
+.pickerBar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: #ffffff;
+    border-bottom: 1px solid var(--color-accent20);
+    padding: 10px 24px;
+    min-height: 52px;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.spinning {
+    animation: spin 0.7s linear infinite;
+}
+
+/* ── Scroll area (replaces Moonstone LayoutContent) ────────────────────── */
+.scrollArea {
+    flex: 1;
+    min-height: 0;   /* allows flex child to shrink and scroll */
+    overflow-y: auto;
+}
+
+/* ── Content area ───────────────────────────────────────────────────────── */
+.content {
+    padding: 24px;
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+}

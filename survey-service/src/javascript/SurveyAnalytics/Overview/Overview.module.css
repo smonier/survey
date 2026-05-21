@@ -1,0 +1,219 @@
+/* ── Layout ─────────────────────────────────────────────────────────────── */
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    padding: 64px 0;
+}
+
+/* ── Stat cards row ─────────────────────────────────────────────────────── */
+.statsRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+}
+
+.statCard {
+    background: #ffffff;
+    border: 1px solid var(--color-accent20);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.statValue {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0c2f6b;
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 12px;
+    font-weight: 600;
+    color: #7b8ab8;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 6px;
+}
+
+.statSub {
+    font-size: 12px;
+    color: #aab4d4;
+    margin-top: 2px;
+}
+
+/* ── Section title ──────────────────────────────────────────────────────── */
+.sectionTitle {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #7b8ab8 !important;
+    margin: 0 0 -16px;
+}
+
+/* ── Survey grid ────────────────────────────────────────────────────────── */
+.surveyGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.surveyCard {
+    background: #ffffff;
+    border: 1px solid var(--color-accent20);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.surveyCard:hover {
+    box-shadow: 0 4px 12px var(--color-accent20);
+    border-color: var(--color-accent40);
+}
+
+.surveyCardHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.surveyTitle {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #1a2c6b !important;
+    line-height: 1.3;
+    flex: 1;
+}
+
+/* ── Status badge ───────────────────────────────────────────────────────── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.badgeActive {
+    background: #e6f9f0;
+    color: #1a7f56;
+}
+
+.badgeInactive {
+    background: #f0f2f7;
+    color: #7b8ab8;
+}
+
+/* ── Timing row ─────────────────────────────────────────────────────────── */
+.timedRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.timedBadge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+}
+
+.timedBadge_live {
+    background: #fff4e0;
+    color: #a05c00;
+}
+
+.timedBadge_upcoming {
+    background: var(--color-accent20);
+    color: var(--color-accent);
+}
+
+.timedBadge_expired {
+    background: #f7f0f0;
+    color: #9b4040;
+}
+
+.timedDates {
+    font-size: 12px;
+    color: #7b8ab8;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Meta row ───────────────────────────────────────────────────────────── */
+.surveyMeta {
+    display: flex;
+    gap: 20px;
+}
+
+.metaItem {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.metaNum {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.metaText {
+    font-size: 11px;
+    color: #7b8ab8;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 600;
+}
+
+/* ── Last date ──────────────────────────────────────────────────────────── */
+.lastDate {
+    font-size: 12px;
+    color: #aab4d4;
+}
+
+.noResponses {
+    font-size: 12px;
+    color: #aab4d4;
+    font-style: italic;
+}
+
+/* ── Actions ────────────────────────────────────────────────────────────── */
+.surveyCardActions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f2f7;
+}
+
+/* ── Empty ──────────────────────────────────────────────────────────────── */
+.empty {
+    display: flex;
+    justify-content: center;
+    padding: 64px 0;
+    color: #7b8ab8;
+}

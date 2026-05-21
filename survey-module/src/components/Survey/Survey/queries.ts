@@ -8,9 +8,12 @@ export const QUESTIONS_QUERY = gql`
   query SurveyQuestions($path: String!, $language: String!) {
     jcr(workspace: LIVE) {
       nodeByPath(path: $path) {
+        uuid
+        workspace
         children(typesFilter: { types: ["svy:question"] }) {
           nodes {
             uuid
+            workspace
             path
             displayName(language: $language)
             textProp: property(name: "text") {
@@ -22,6 +25,7 @@ export const QUESTIONS_QUERY = gql`
             children(typesFilter: { types: ["svy:answerOption"] }) {
               nodes {
                 uuid
+                workspace
                 displayName(language: $language)
                 descProp: property(name: "text") {
                   value
@@ -43,13 +47,19 @@ export const RESULTS_QUERY = gql`
   query SurveyResults($responsesPath: String!) {
     jcr(workspace: LIVE) {
       nodeByPath(path: $responsesPath) {
+        uuid
+        workspace
         children(typesFilter: { types: ["svy:surveyResponse"] }) {
           pageInfo {
             totalCount
           }
           nodes {
+            uuid
+            workspace
             children(typesFilter: { types: ["svy:questionResponse"] }) {
               nodes {
+                uuid
+                workspace
                 questionId: property(name: "questionPath") {
                   value
                 }

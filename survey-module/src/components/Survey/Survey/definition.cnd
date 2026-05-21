@@ -3,7 +3,7 @@
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 
-[svy:survey] > jnt:content, svymix:component, mix:title orderable
+[svy:survey] > jnt:content, jmix:editorialContent, svymix:component, mix:title orderable
  - description (string, richtext) i18n
  - active (boolean) = true autocreated
  - timerEnabled (boolean)
@@ -11,3 +11,4 @@
  - endDate (date)
  + * (svy:question)
  + responses (svy:responseList) hidden
+ + aiAnalysis (jnt:content) hidden

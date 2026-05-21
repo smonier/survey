@@ -2,5 +2,5 @@
 <jmix = 'http://www.jahia.org/jahia/mix/1.0'>
 <jnt = 'http://www.jahia.org/jahia/nt/1.0'>
 
-[svy:answerOption] > jnt:content, mix:title
+[svy:answerOption] > jnt:content, jmix:editorialContent, mix:title
  - text (string) i18n

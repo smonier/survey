@@ -1,0 +1,126 @@
+/* ── Layout ─────────────────────────────────────────────────────────────── */
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    padding: 64px 0;
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    padding: 80px 0;
+    color: #7b8ab8;
+}
+
+.error {
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 16px;
+    color: #991b1b;
+    font-size: 13px;
+}
+
+/* ── Page header ─────────────────────────────────────────────────────────── */
+.pageHeader {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--color-accent20);
+}
+
+.surveyName {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #1a2c6b !important;
+}
+
+.respCount {
+    font-size: 13px;
+    color: #7b8ab8;
+    font-weight: 600;
+}
+
+/* ── Question blocks ─────────────────────────────────────────────────────── */
+.questionList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.questionBlock {
+    background: #ffffff;
+    border: 1px solid var(--color-accent20);
+    border-radius: 8px;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.questionHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.questionTitle {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #1a2c6b !important;
+    flex: 1;
+}
+
+.multipleTag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: #ede9fe;
+    color: #5b21b6;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.chartWrap {
+    width: 100%;
+}
+
+.questionFooter {
+    font-size: 11px;
+    color: #aab4d4;
+    text-align: right;
+    font-weight: 600;
+}
+
+/* ── Recharts tooltip ───────────────────────────────────────────────────── */
+.tooltip {
+    background: #1a2c6b;
+    border-radius: 6px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tooltipLabel {
+    font-size: 12px;
+    color: #a5b4fc;
+    margin-bottom: 2px;
+}
+
+.tooltipValue {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+}
