@@ -56,6 +56,7 @@ A complete Jahia survey solution comprising two modules working in tandem: **sur
 3. **Submission** — Visitor fills the form and submits; `survey-module` calls `survey.submitResponse` mutation.
 4. **Persistence** — `survey-service` validates the email, checks for duplicates, and writes the response to JCR LIVE.
 5. **Results Display** — After submission (or when the survey closes), `survey-module` fetches results via `RESULTS_QUERY` and displays charts.
+6. **AI Analysis (Optional)** — Back-office editors can run DeepSeek analysis on responses; `survey-service` proxies the analysis request via `SurveyAnalysisAction` and stores results as a `svy:surveyAnalysis` node in JCR.
 
 ## Setup
 
