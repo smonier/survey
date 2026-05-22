@@ -416,3 +416,29 @@ jcr(workspace: LIVE) {
 - [ ] `nodeInWorkspace(...)` result → add `uuid workspace`
 
 Property nodes (`property(name: ...) { value }`) are **not** `GenericJCRNode` and do **not** need `uuid`/`workspace`.
+
+---
+
+## `property()` vs `properties()` — never confuse them
+
+| Field | Returns | Use for |
+|---|---|---|
+| `property(name: "x") { value }` | Single `JCRProperty` object | A known single-value property |
+| `property(name: "x") { values }` | Same object, multi-value list | A known **multiple-value** property (e.g. `chosenOptions`) |
+| `properties(names: ["x","y"]) { name values }` | **Array** of `JCRProperty` objects | Batching several properties in one round-trip |
+
+`properties()` returns an **array** — each element has its own `name` and `values`. Reading `.values?.[0]` off the array itself (instead of off a single element) gives `undefined` and silently breaks boolean/string comparisons like `=== "true"`.
+
+```graphql
+# ❌ WRONG — allowMultiple is a single-value property; properties() returns an array
+allowMultipleProp: properties(names: ["allowMultiple"]) {
+  values          # this is the values[] of the *first array item*, not the property value
+}
+# mapping: (q.allowMultipleProp?.values?.[0] ?? "") === "true"  → always false
+
+# ✅ CORRECT
+allowMultipleProp: property(name: "allowMultiple") {
+  value           # direct string value of the property
+}
+# mapping: q.allowMultipleProp?.value === "true"
+```

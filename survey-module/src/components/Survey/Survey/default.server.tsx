@@ -18,7 +18,7 @@ type RawQuestion = {
   path: string;
   displayName: string | null;
   textProp: { value: string } | null;
-  allowMultipleProp: { values: string[] } | null;
+  allowMultipleProp: { value: string } | null;
   children: {
     nodes: Array<{
       uuid: string;
@@ -90,7 +90,7 @@ jahiaComponent(
       id: q.uuid,
       text: q.displayName ?? "",
       description: q.textProp?.value ?? "",
-      allowMultiple: (q.allowMultipleProp?.values?.[0] ?? "") === "true",
+      allowMultiple: q.allowMultipleProp?.value === "true",
       options: q.children.nodes.map((opt) => ({
         id: opt.uuid,
         text: opt.displayName ?? "",

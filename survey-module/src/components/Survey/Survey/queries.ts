@@ -19,8 +19,8 @@ export const QUESTIONS_QUERY = gql`
             textProp: property(name: "text") {
               value
             }
-            allowMultipleProp: properties(names: ["allowMultiple"]) {
-              values
+            allowMultipleProp: property(name: "allowMultiple") {
+              value
             }
             children(typesFilter: { types: ["svy:answerOption"] }) {
               nodes {
